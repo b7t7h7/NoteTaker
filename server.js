@@ -25,7 +25,7 @@ app.get("/notes", function(req, res) {
 
 
 app.get("/api/notes", function(req, res) {
-  var data = fs.readFileSync(__dirname + "/db/db.json");
+  var data = fs.readFileSync(__dirname + "/database/db.json");
   var noteDbArr = [];
   
   if(data.length > 0){
@@ -38,7 +38,7 @@ app.get("/api/notes", function(req, res) {
 app.post("/api/notes", function(req, res) {
   console.log("API call.");
   var newNote = req.body;
-  var data = fs.readFileSync(__dirname + "/db/db.json");
+  var data = fs.readFileSync(__dirname + "/database/db.json");
   console.log(data);
   console.log(newNote);
   var noteDbArr = [];
@@ -53,7 +53,7 @@ app.post("/api/notes", function(req, res) {
 
     newNote.id = newId;
     noteDbArr.push(newNote);
-    fs.writeFile(__dirname + "/db/db.json", JSON.stringify(noteDbArr), function(err){
+    fs.writeFile(__dirname + "/database/db.json", JSON.stringify(noteDbArr), function(err){
       if (err) {
           return console.log(err);
       }
@@ -65,7 +65,7 @@ app.post("/api/notes", function(req, res) {
 
 app.delete("/api/notes/:id", function(req, res) {
   var deleteNoteId = req.params.id;
-  var data = fs.readFileSync(__dirname + "/db/db.json");
+  var data = fs.readFileSync(__dirname + "/database/db.json");
   var noteListArr = [];
   
   if(data.length > 0){
@@ -81,7 +81,7 @@ app.delete("/api/notes/:id", function(req, res) {
         break;
       }
     }
-    fs.writeFile(__dirname + "/db/db.json", JSON.stringify(noteListArr), function(err){
+    fs.writeFile(__dirname + "/database/db.json", JSON.stringify(noteListArr), function(err){
       if (err) {
           return console.log(err);
       }
