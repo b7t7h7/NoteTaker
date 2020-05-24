@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-// Routes
+// routes
 
 app.get("/", function(req, res) {
   res.sendFile(path.join(__dirname, "/public/index.html"));
@@ -36,7 +36,7 @@ app.get("/api/notes", function(req, res) {
 
 
 app.post("/api/notes", function(req, res) {
-  console.log("I am your API call.");
+  console.log("API call.");
   var newNote = req.body;
   var data = fs.readFileSync(__dirname + "/db/db.json");
   console.log(data);
